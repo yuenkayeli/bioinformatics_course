@@ -1,0 +1,46 @@
+"0","#install and load ggplot2"
+"0",""
+"0","install.packages(""ggplot2"",repos = ""https://cran.rstudio.com/bin/macosx/contrib/4.0/ggplot2_3.3.3.tgz"")"
+"2","Installing package into ‘/Users/yuenkayeli/Library/R/4.0/library’
+(as ‘lib’ is unspecified)
+"
+"1","Warning in "
+"1",""
+"1","install.packages"
+"1",""
+"1"," :
+  "
+"1",""
+"1","unable to access index for repository https://cran.rstudio.com/bin/macosx/contrib/4.0/ggplot2_3.3.3.tgz/src/contrib:
+  cannot open URL 'https://cran.rstudio.com/bin/macosx/contrib/4.0/ggplot2_3.3.3.tgz/src/contrib/PACKAGES'"
+"1",""
+"1","
+"
+"1","Warning in "
+"1",""
+"1","install.packages"
+"1",""
+"1"," :
+  "
+"1",""
+"1","package ‘ggplot2’ is not available for this version of R
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages"
+"1",""
+"1","
+"
+"1","Warning in "
+"1",""
+"1","install.packages"
+"1",""
+"1"," :
+  "
+"1",""
+"1","unable to access index for repository https://cran.rstudio.com/bin/macosx/contrib/4.0/ggplot2_3.3.3.tgz/bin/macosx/contrib/4.0:
+  cannot open URL 'https://cran.rstudio.com/bin/macosx/contrib/4.0/ggplot2_3.3.3.tgz/bin/macosx/contrib/4.0/PACKAGES'"
+"1",""
+"1","
+"
+"0","library (ggplot2)"

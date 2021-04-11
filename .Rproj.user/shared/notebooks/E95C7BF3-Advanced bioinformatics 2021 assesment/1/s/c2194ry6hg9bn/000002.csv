@@ -1,0 +1,5 @@
+"0","#load data"
+"0","data(mtcars)"
+"0",""
+"0","#view first 6 rows of data"
+"0","head(mtcars)"

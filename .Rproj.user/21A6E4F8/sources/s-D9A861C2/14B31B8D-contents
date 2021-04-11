@@ -1,0 +1,190 @@
+---
+title: "Advanced Bioinformatics 2021 assessment"
+author: '18047'
+date: "11/04/2021"
+output: html_document
+---
+---
+# Task 3.1
+---
+
+sum of all intergers between 5 and 55 sum() add all values within ()
+
+':' includes values from:to
+
+```{r}
+x <-sum(5:55); x
+```
+
+---
+# Task 3.2
+---
+
+write function *sumfun* with one input parameter *n* that calculate sum of all integers between 5 and *n*
+
+use function *n* to calculate n= 10, n= 20, n=100
+
+```{r}
+
+sumfun <- function(n){
+  n <- sum(5:n)
+  return(n)
+}
+
+```
+
+
+write function *sumfun* to parameter *n*
+n = the sum of integers from 5 to parameter *n*
+return the value of parameter n when sumfun function is used
+
+sumfun returns calculation when give parameter n=
+
+n=10
+
+```{r}
+sumfun(10)
+```
+n= 20
+```{r}
+sumfun(20)
+```
+n=100
+```{r}
+sumfun(100)
+```
+
+---
+#Task 3.3
+---
+*Fibonacci sequence*
+print first 12 number of Fibonacci sequence
+```{r}
+fib <- numeric(12)    # creates 12 vectors stored to fib
+  fib[1]<-1           #vector 1  is the first number of Fibonacci sequence is 1
+  fib[2]<-1           #vector 2 is the second number of Fibonacci sequence is 2  
+  for(n in 3:12)      # for each variable n from 3 to 12 
+  fib[n] <- fib[n-1]+fib[n-2] #loop (n-1 + n-2), i.e n=3 , vector 3= (3-1 +3-2) 
+print(fib)                        # print all the 12 stored vectors
+```
+
+---
+#Task 3.4
+---
+
+```{r}
+#install and load ggplot2
+
+install.packages("ggplot2",repos = "https://cran.rstudio.com/bin/macosx/contrib/4.0/ggplot2_3.3.3.tgz")
+library (ggplot2)
+```
+```{r}
+#load data
+data(mtcars)
+
+#view first 6 rows of data
+head(mtcars)
+
+# draw ggplot box plot using mtcars dataset of miles per gallon in variable mpg
+# as a function of the number of gears in variable (gear)
+#fill aesthetic to color bars by number of gears
+
+ggplot(mtcars,aes(x=as.factor(gear), y=mpg, fill=as.factor(gear))) + geom_boxplot() + labs(title = "Gears data") + theme(plot.title = element_text(color = "blue", size= 16, hjust = 0.5))
+
+```
+
+---
+#Task 3.5
+---
+
+```{r}
+#load dataset cars
+data(cars)
+
+#view first few rows of cars
+head(cars)
+
+#fit linear regression line model with y= breaking distance and x=cars
+fit <- lm(formula = dist~speed, data=cars)
+
+#show summary of regression line
+
+summary(fit)
+
+#Intercept= -17.5791, slope= 3.9324, standard errors for intercept: 6.7584, standard errors for slope: 0.4155)  
+
+#variables used speed= mph, dist = ft
+help(cars)
+```
+
+---
+#Task 3.6
+---
+
+```{r}
+#task 6? useing the lm best fit line from task 3.5
+#plot scatterplot and best fit line between speed and breaking distance
+
+ggplot(cars,aes(speed,dist)) + geom_point() + 
+  geom_smooth(method = "lm",formula = "y~x") +
+  labs(title = "Breaking distance against speed", subtitle = paste("Intercept=",signif(fit$coefficients[[1]],5),
+                     "slope=",signif(fit$coefficients[[2]],5))) +
+  theme(plot.title = element_text(colour = "blue", size = 16, hjust = 0.5)) +
+  xlab("speed(mph)") + ylab("distance(ft)")
+
+```
+
+---
+#Task 3.7
+---
+
+* use lm to estimate average reaction time of driver to start breaking in seconds
+using lm line between dist(ft) and speed^2 (ft/sec)
+
+important info.
+
+* assume reaction time is proportional to time diver applies breaks and 
+once breaking commences breaking distance is proportional to square of speed
+
+*1 mile = 5280 ft
+
+*1 hour = 3600 sec
+
+convert speed from mile per hour to sec per ft
+view summary and see average of reaction time  at y-intercept of lm line
+
+```{r}
+# cars database already loaded
+
+#convert speed (mph) to (sec/ft)= speed (mph) * (5280/3600)
+#reaction time is assumed to be equal to breaking distance
+# and breaking distance is equal to speed^2
+#do calculation and save to new column of cars as speed_new
+cars$speed_new <- cars[,1]*(5280/3600)^2
+
+#see if column has been made
+head (cars)
+
+# new liner model line, 
+line <- lm(formula = dist~speed_new, data = cars)
+summary(line)
+```
+```{r}
+#the slope is around 1.8281 as a reaction time in seconds seems acceptable, google searches estimate average breaking times to be around 0.7 ~ 3 secs
+#y-intercept is not always a good indicated like in this case it stats going at 0 ft/sec it goes backwards, and can be ignored.
+```
+
+```{r}
+#plot new scatterplot with new lm line in ft
+
+y <-cars$speed_new
+x <-cars$dist
+ 
+ggplot(cars,aes(speed_new,dist)) + geom_point()+ 
+  geom_smooth(method = "lm",formula = "y~x")+ labs(title = "Breaking distance against speed (ft/sec)", subtitle = paste("Intercept=",signif(fit$coefficients[[1]],5),             "slope=",signif(line$coefficients[[2]],5)))+
+  theme(plot.title = element_text(colour = "blue", size = 16, hjust = 0.5))+
+  xlab("speed(ft/sec)") + ylab("distance(ft)")
+```
+
+
+

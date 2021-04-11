@@ -1,0 +1,5 @@
+"0","#load dataset cars"
+"0","data(cars)"
+"0",""
+"0","#view first few rows of cars"
+"0","head(cars)"
